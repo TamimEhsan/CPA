@@ -1,4 +1,4 @@
 # CodeforceAPI
 A visualizer for Codeforce made with CF API
 
-Link to site tamimehsan.github.io/CodeforceAPI
+Link to site https://tamimehsan.github.io/CodeforceAPI/
