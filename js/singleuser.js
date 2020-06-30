@@ -1,4 +1,6 @@
 const base_api_url="https://codeforces.com/api/";
+var cresponse ;
+var cdata ;
 
 async function getData(){
 	var handle = document.getElementById("handle").value;
@@ -9,7 +11,7 @@ async function getData(){
 	
 	document.getElementById('ghandle').textContent = document.getElementById("handle").value;
 	if( data.status == "OK" ){
-		console.log(data.result.length);
+		//console.log(data.result.length);
 		document.getElementById('name').textContent = data.result[0].handle;
 		document.getElementById('rating').textContent = data.result[0].rating;
 		document.getElementById("image").textContent = data.result[0].titlePhoto;
@@ -19,17 +21,12 @@ async function getData(){
 		document.getElementById('name').textContent = "Error";
 		document.getElementById('rating').textContent = "Error";
 	}
-	const cresponse = await fetch(contest_url);
-	const cdata = await cresponse.json();
+	cresponse = await fetch(contest_url);
+	cdata = await cresponse.json();
 	if(cdata.status == "OK"){
-		const datalabels = [];
-		const datax = [];
-		for(i=0;i<cdata.result.length;i++){
-			datalabels.push(i+1);
-			datax.push(cdata.result[i].newRating);
-		}
-		createratingchart(datalabels,datax);
+		changeRatingChart();
 	}
+	
 	
 	const sresponse = await fetch(base_api_url+"user.status?handle="+handle);
 	const submission_data = await sresponse.json();
@@ -52,7 +49,7 @@ async function getData(){
 		
 		if( typeof ara[dif] == "undefined") ara[dif] = 0;
 		ara[dif]++;
-		if(dif==11)console.log(i);
+		//if(dif==11)console.log(i);
 		var verdict = submission_data.result[i].verdict;
 		if( verdict == "OK" ){ac++;}
 		else if( verdict == "WRONG_ANSWER" ){wa++;}
@@ -78,13 +75,30 @@ async function getData(){
 		const character = String.fromCharCode(i+65);
 		datalabels4.push(character);
 		datax4.push(ara[i]);
-		console.log(ara[i]);
+		//console.log(ara[i]);
 	}
 	createProblemChart(datalabels4,datax4);
 	
+}
+
+function changeRatingChart(){
+	if( typeof cdata == "undefined") return;
 	
-	
-	
+	const datalabels = [];
+		const datax = [];
+		const state = document.getElementById("mySelect").value;
+		for(i=0;i<cdata.result.length;i++){
+			if(state == "newRating")datax.push(cdata.result[i].newRating);
+			else if(state == "changedRating"){
+				if(i == 0) datax.push(cdata.result[i].newRating-1400);
+				else datax.push(cdata.result[i].newRating-cdata.result[i].oldRating);
+			}
+			else datax.push(cdata.result[i].rank);
+			//console.log(cdata.result[i].newRating-cdata.result[i].oldRating);
+			datalabels.push(i+1);
+			
+		}
+		createratingchart(datalabels,datax);
 }
 
 function createsubmissionchart(datalabels,datax){
