@@ -28,9 +28,18 @@
 	
 	</tr>
 	</table>
-	<h2 position="center"> Contest Rating Graph</h1>
-	<canvas id="ratingChart" width="4" height="1"></canvas> <br />
-	<h2> Submission	graph </h2>
+	<table> <tr>
+	<td><h2 > Contest Rating Graph</h1></td>
+	<td><select id="mySelect" onchange="changeRatingChart()">
+		<option value="newRating">New Rating
+		<option value="changedRating">Rating Changes
+		<option value="rank">Rank
+	</select>
+	</td></tr></table>
+	<canvas id="ratingChart" width="4" height="1"></canvas> 
+	
+	<h2> Submission	graph </h2> 
+	
 	<canvas id="submissionChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
 	Total Submission: <span id = "total_submission_span" ></span> <br />
 	Accepted Count: <span id = "accepted_count_span" ></span> <br />
