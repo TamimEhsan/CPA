@@ -1,13 +1,20 @@
 const base_api_url="https://codeforces.com/api/";
 var cresponse ;
 var cdata ;
-
+var ratingGraph;
+var submissionGraph;
+var problemGraph;
 async function getData(){
 	var handle = document.getElementById("handle").value;
 	const api_url = 'https://codeforces.com/api/user.info?handles='+handle;
 	const contest_url = "https://codeforces.com/api/user.rating?handle="+handle;
 	const response = await fetch(api_url);
 	const data = await response.json();
+	
+	
+	
+	if(data.status!="OK") return;
+	document.getElementById("hiddendiv").style.display = "block";
 	
 	document.getElementById('ghandle').textContent = document.getElementById("handle").value;
 	if( data.status == "OK" ){
@@ -26,7 +33,6 @@ async function getData(){
 	if(cdata.status == "OK"){
 		changeRatingChart();
 	}
-	
 	
 	const sresponse = await fetch(base_api_url+"user.status?handle="+handle);
 	const submission_data = await sresponse.json();
@@ -102,81 +108,99 @@ function changeRatingChart(){
 }
 
 function createsubmissionchart(datalabels,datax){
-	var ctx = document.getElementById('submissionChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'doughnut',
-		
-		data: {
-			labels: datalabels,
-			datasets: [{
-				label: 'Total Submission',
-				data: datax,
-				backgroundColor: [
-					'rgba(0, 255, 0, 1)',
-					'rgba(255, 0, 0, 1)',
-					'rgba(255, 255, 0, 1)',
-					'rgba(255, 130, 0, 1)',
-					'rgba(130, 0, 255, 1)',
-					'rgba(114, 110, 117,1)'
-				],
-				borderColor: 'rgba(0,0,0, 0.5)',
-				
-			}]
-		},
-		options: {
-		}
-	});
+	if(submissionGraph){
+		submissionGraph.data.labels = datalabels;
+		submissionGraph.data.datasets[0].data = datax;
+		submissionGraph.update();
+	} else {
+		var ctx = document.getElementById('submissionChart').getContext('2d');
+		submissionGraph = new Chart(ctx, {
+			type: 'doughnut',
+			
+			data: {
+				labels: datalabels,
+				datasets: [{
+					label: 'Total Submission',
+					data: datax,
+					backgroundColor: [
+						'rgba(0, 255, 0, 1)',
+						'rgba(255, 0, 0, 1)',
+						'rgba(255, 255, 0, 1)',
+						'rgba(255, 130, 0, 1)',
+						'rgba(130, 0, 255, 1)',
+						'rgba(114, 110, 117,1)'
+					],
+					borderColor: 'rgba(0,0,0, 0.5)',
+					
+				}]
+			},
+			options: {
+			}
+		});
+	}
 	
 }
 
 function createratingchart(datalabels,datax){
-	var ctx = document.getElementById('ratingChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		
-		data: {
-			labels: datalabels,
-			datasets: [{
-				label: 'Contest Rating Changes',
-				data: datax,
-				fill: false,
-				backgroundColor: 'rgba(0, 0, 0, 1)',
-				borderColor: 'rgba(255, 99, 132, 1)',
-				borderWidth: 1
-			}]
-		},
-		options: {
+	if(ratingGraph){
+		ratingGraph.data.labels = datalabels;
+		ratingGraph.data.datasets[0].data = datax;
+		ratingGraph.update();
+	}else {
+		var ctx = document.getElementById('ratingChart').getContext('2d');
+		ratingGraph = new Chart(ctx, {
+			type: 'line',
 			
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: false
-					}
+			data: {
+				labels: datalabels,
+				datasets: [{
+					label: 'Contest Rating Changes',
+					data: datax,
+					fill: false,
+					backgroundColor: 'rgba(0, 0, 0, 1)',
+					borderColor: 'rgba(255, 99, 132, 1)',
+					borderWidth: 1
 				}]
+			},
+			options: {
+				
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: false
+						}
+					}]
+				}
 			}
-		}
-	});
+		});
+	}
 }
 
 function createProblemChart(datalabels,datax){
-	var ctx = document.getElementById('problemChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'horizontalBar',
-		
-		data: {
-			labels: datalabels,
-			datasets: [{
-				label: 'Problem Counts',
-				data: datax,
-				fill: false,
-				backgroundColor: 'rgba(50, 102, 168, 1)',
-				borderColor: 'rgba(255, 99, 132, 1)',
-				borderWidth: 1
-			}]
-		},
-		options: {
-		
-		}
-	});
+	if(problemGraph){
+		problemGraph.data.labels = datalabels;
+		problemGraph.data.datasets[0].data = datax;
+		problemGraph.update();
+	} else{
+		var ctx = document.getElementById('problemChart').getContext('2d');
+		problemGraph = new Chart(ctx, {
+			type: 'horizontalBar',
+			
+			data: {
+				labels: datalabels,
+				datasets: [{
+					label: 'Problem Counts',
+					data: datax,
+					fill: false,
+					backgroundColor: 'rgba(50, 102, 168, 1)',
+					borderColor: 'rgba(255, 99, 132, 1)',
+					borderWidth: 1
+				}]
+			},
+			options: {
+			
+			}
+		});
+	}
 }
 		
