@@ -4,6 +4,45 @@ var cdata ;
 var ratingGraph;
 var submissionGraph;
 var problemGraph;
+//========================================\\
+
+google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      async	function drawRegionsMap() {
+		const api_url = "https://o4qqcaphlj.execute-api.ap-south-1.amazonaws.com/demo?fbclid=IwAR2HUAaUx6rWNpo4WQihJl8Y_ThsLihG_X9T0IXdRyp0QAw9Fj02AbKihzI";
+		const response = await fetch(api_url);
+		//console.log(response);
+		
+		const datam = await response.json();
+		console.log("idiot");
+		var count = datam.data.length;
+		console.log(count);
+		var datatoshow = [];
+		var ara = ['Country','Users'];
+		datatoshow.push(ara);
+		for(i = 0;i<count;i++){
+			datatoshow.push(datam.data[i]);
+		}
+        var mapdata = google.visualization.arrayToDataTable(datatoshow);
+
+        var options = {
+			colorAxis: {colors: ['#42bcf5', '#4251f5']}
+		};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(mapdata, options);
+      }
+
+
+
+//-----------------------------------------\\
 async function getData(){
 	var handle = document.getElementById("handle").value;
 	const api_url = 'https://codeforces.com/api/user.info?handles='+handle;
@@ -14,6 +53,8 @@ async function getData(){
 	
 	
 	if(data.status!="OK") return;
+	document.getElementById("regions_div").style.display = "none";
+		
 	document.getElementById("hiddendiv").style.display = "block";
 	
 	document.getElementById('ghandle').textContent = document.getElementById("handle").value;
@@ -93,18 +134,26 @@ function changeRatingChart(){
 	const datalabels = [];
 		const datax = [];
 		const state = document.getElementById("mySelect").value;
+		var sstattus = "";
 		for(i=0;i<cdata.result.length;i++){
-			if(state == "newRating")datax.push(cdata.result[i].newRating);
+			if(state == "newRating"){
+				datax.push(cdata.result[i].newRating);
+				sstatus = "Contest Rating Changes";
+			}
 			else if(state == "changedRating"){
+				sstatus = "Contest Changed Rating";
 				if(i == 0) datax.push(cdata.result[i].newRating-1400);
 				else datax.push(cdata.result[i].newRating-cdata.result[i].oldRating);
 			}
-			else datax.push(cdata.result[i].rank);
+			else {
+				datax.push(cdata.result[i].rank);
+				sstatus = "Contest Rank";
+			}
 			//console.log(cdata.result[i].newRating-cdata.result[i].oldRating);
 			datalabels.push(i+1);
 			
 		}
-		createratingchart(datalabels,datax);
+		createratingchart(datalabels,datax,sstatus);
 }
 
 function createsubmissionchart(datalabels,datax){
@@ -141,10 +190,11 @@ function createsubmissionchart(datalabels,datax){
 	
 }
 
-function createratingchart(datalabels,datax){
+function createratingchart(datalabels,datax,sstatus){
 	if(ratingGraph){
 		ratingGraph.data.labels = datalabels;
 		ratingGraph.data.datasets[0].data = datax;
+		ratingGraph.data.datasets[0].label = sstatus;
 		ratingGraph.update();
 	}else {
 		var ctx = document.getElementById('ratingChart').getContext('2d');
@@ -154,7 +204,7 @@ function createratingchart(datalabels,datax){
 			data: {
 				labels: datalabels,
 				datasets: [{
-					label: 'Contest Rating Changes',
+					label: sstatus,
 					data: datax,
 					fill: false,
 					backgroundColor: 'rgba(0, 0, 0, 1)',
