@@ -32,7 +32,9 @@ google.charts.load('current', {
         var mapdata = google.visualization.arrayToDataTable(datatoshow);
 
         var options = {
-			colorAxis: {colors: ['#42bcf5', '#4251f5']}
+			colorAxis: {colors: [ '#42bcf5','#4251f5']},//#fce803 
+			width:900,
+			height:500
 		};
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
@@ -53,7 +55,7 @@ async function getData(){
 	
 	
 	if(data.status!="OK") return;
-	document.getElementById("regions_div").style.display = "none";
+	document.getElementById("firstToShow").style.display = "none";
 		
 	document.getElementById("hiddendiv").style.display = "block";
 	
