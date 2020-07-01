@@ -21,43 +21,76 @@
 		  });
 		  google.charts.setOnLoadCallback(drawRegionsMap);
 	 </script>
-	<input type = "text" id = "handle">
-	<button type = "button" onclick = "getData()"> Touch me </button> <br />
-	<div id="regions_div" style="margin-left: auto; margin-right: auto;position:center;width: 900px; height: 500px; display: block"></div>
+	<div class="card">
+		<input type = "text" id = "handle" placeholder="Your Handle"><br/>
+		<button type = "button" onclick = "getData()"> Touch me </button> <br />
+	
+	</div>
+	<div class = "card" id = "firstToShow">
+		<div class = "container">
+		<p><h2><b> World Map</b></h2></p>
+		</div>
+		<div class="contents">
+			<div id="regions_div" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
+	
+		</div>
+	</div>
+	
 	<div id="hiddendiv">
-		<table>
-			<tr><td>
-			<img src="" id = "dp"> <br \>
-			</td>
-			<td>
-			Given Handle: <span id = "ghandle"></span> <br />
-			Name: <span id="name"></span> <br />
-			Rating: <span id = "rating" ></span> <br />
-			Image link: <span id = "image" ></span> 
-			</td>
+		<div class = "card" >
+			<div class = "container">
+			<p><h2><b> User Profile</b></h2></p>
+			</div>
+			<div class="contents">
+				<table>
+					<tr><td>
+					<img src="" id = "dp"> <br \>
+					</td>
+					<td>
+					Given Handle: <span id = "ghandle"></span> <br />
+					Name: <span id="name"></span> <br />
+					Rating: <span id = "rating" ></span> <br />
+					Image link: <span id = "image" ></span> 
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		<div class = "card" >
+			<div class = "container">
 			
-		
-		</tr>
-		</table>
-		<table> <tr>
-		<td><h2 > Contest Rating Graph</h1></td>
-		<td><select id="mySelect" onchange="changeRatingChart()">
-			<option value="newRating">New Rating
-			<option value="changedRating">Rating Changes
-			<option value="rank">Rank
-		</select>
-		</td></tr></table>
-		<canvas id="ratingChart" width="4" height="1"></canvas> 
-		
-		<h2> Submission	graph </h2><br /> 
-		
-		<canvas id="submissionChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
-		Total Submission: <span id = "total_submission_span" ></span> <br />
-		Accepted Count: <span id = "accepted_count_span" ></span> <br />
-		Wrong Answer Count: <span id = "wrong_answer_count_span" ></span> <br />
-		<h2>Problem graph </h2><br /> 
-		<canvas id="problemChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
-
+			<table >
+			<td><h2 > Contest Rating Graph</h1></td>
+			<td><select id="mySelect" onchange="changeRatingChart()">
+				<option value="newRating">New Rating
+				<option value="changedRating">Rating Changes
+				<option value="rank">Rank
+			</select>
+			</td></tr></table>
+			</div>
+			<div class="contents">
+				<canvas id="ratingChart" width="4" height="1"></canvas>
+			</div> 
+		</div>
+		<div class = "card" >
+			<div class = "container">
+				<p><h2><b> Submission Graph</b></h2></p>
+			</div> 
+			<div class="contents">
+				<canvas id="submissionChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
+				Total Submission: <span id = "total_submission_span" ></span> <br />
+				Accepted Count: <span id = "accepted_count_span" ></span> <br />
+				Wrong Answer Count: <span id = "wrong_answer_count_span" ></span> <br />
+			
+			</div>
+		</div>
+		<div class = "card">
+			<div class = "container">
+				<p><h2><b> Problem Chart</b></h2></p>
+			</div> 
+			<div class="contents">
+				<canvas id="problemChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
+			</div>
+		</div>
 	</div>
 
 </body>
@@ -65,6 +98,77 @@
     #hiddendiv { 
 		display:none;
     }
+	.card {
+  /* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	width: 80%;
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 25px;
+	padding:10px;
+	transition: 0.3s;
+	height: 80%;
+	text-align: center;
+	background-color: #c2c2c2;
+	 border-radius: 4px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.contents{
+	overflow: auto;
+	white-space: nowrap;
+	text-align: center;
+	background-color: #ffffff;
+	border-radius: 4px;	
+}
+
+/* Add some padding inside the card container */
+.container {
+	background-color: #3b5998;
+	color: #ffffff;
+	margin-left: auto; 
+	margin-right: auto;
+	padding: 2px ;
+	text-align: center;
+	
+	border-radius: 4px;
+	margin-bottom: 10px;
+	
+	
+}
+table{
+	margin-left: auto; 
+	margin-right: auto;
+}
+body{
+	background-color: grey;
+}
+input[type=text] {
+  border: 2px solid green;
+  border-radius: 4px;
+  width: 40%;
+  height: 30px;
+	margin-left: auto; 
+	margin-right: auto;
+}
+select{
+	border: 2px solid green;
+	border-radius: 4px;
+	height: 30px;
+}
+button{
+  width: 40%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none ;
+  border-radius: 4px;
+  cursor: pointer;
+}
 </style>
 
 </html>
