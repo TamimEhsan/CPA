@@ -78,6 +78,16 @@ button{
   cursor: pointer;
 }
 
+.contents span{
+	background-color: #3b5998;
+	border: 1px solid black;
+	border-radius: 4px;
+	font-size:24px;
+	color: white;
+	margin: 2px;
+	padding: 2px;
+}
+
 /*================Info Card=============*/
 body{
 	text-align: center;
@@ -139,7 +149,7 @@ body{
    -moz-box-shadow: 0px 0px 10px #ff0000;
 }*/
 .infotable td:nth-child(1) { 
-	width: 200px;
+	width:  200px;
 	
 	font-family: 'cambria';
 	font-size: 24px;
@@ -149,11 +159,9 @@ body{
 }
 .infotable td:nth-child(2) { 
 	width:200px;
-		
 	font-family: 'cambria';
 	font-size: 24px;
     padding-right: 16px; 
-
     text-align: right; 
 }
 .infotable tr { 
