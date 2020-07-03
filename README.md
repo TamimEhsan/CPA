@@ -13,7 +13,7 @@ A gradient colored world map with data of number of users per country
 ##User Infos
 
 Infos related to User all in one place
-![Image of User](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI2.PNG)
+![Image of User](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI6.PNG)
 
 ##Contest Rating
 
@@ -23,14 +23,21 @@ Rating , Ranking and Rating Change graph of all the official contest part partic
 ##Submissions
 
 Verdicts counts of all the submission in a doughnut chart
-![Image of Submissions](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI4.PNG)
+![Image of Submissions](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI7.PNG)
 
 #Tags
 
 Tags of all the solved and unsolved problems
-![Image of Tags](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI4.PNG)
+![Image of Tags](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI8.PNG)
 
 #Problems
 
 Problem sorted according to their difficulties
 ![Image of Tags](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI5.PNG)
+
+And many mores
+
+##Dependencies
+For visualization: chart.js, google chart api
+For serverside: Axios,Node.js [ Thanks to Mehrab Haque Zehady ( @mehrab-haque ) for this part ]
+For frontend: HTML,CSS,JavaScript,Ajax.js
