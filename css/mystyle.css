@@ -1,0 +1,165 @@
+ #hiddendiv { 
+		display:none;
+    }
+	.card {
+  /* Add shadows to create the "card" effect */
+  
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	width: 80%;
+	margin-left: auto; 
+	margin-right: auto;
+	margin-top: 25px;
+	padding:10px;
+	transition: 0.3s;
+	height: 80%;
+	text-align: center;
+	background-color: #c2c2c2;
+	 border-radius: 4px;
+	 
+	
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.contents{
+	overflow: auto;
+	white-space: nowrap;
+	text-align: center;
+	background-color: #ffffff;
+	border-radius: 4px;	
+}
+
+/* Add some padding inside the card container */
+.container {
+	background-color: #3b5998;
+	color: #ffffff;
+	margin-left: auto; 
+	margin-right: auto;
+	padding: 2px ;
+	text-align: center;
+	
+	border-radius: 4px;
+	margin-bottom: 10px;
+	
+}
+table{
+	margin-left: auto; 
+	margin-right: auto;
+}
+td{
+	text-align:left;
+}
+body{
+	background-color: grey;
+}
+input[type=text] {
+  border: 2px solid green;
+  border-radius: 4px;
+  width: 40%;
+  height: 30px;
+	margin-left: auto; 
+	margin-right: auto;
+}
+select{
+	border: 2px solid green;
+	border-radius: 4px;
+	height: 30px;
+}
+button{
+  width: 40%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none ;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*================Info Card=============*/
+body{
+	text-align: center;
+}
+.infoCard {
+  /* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+	/*width: Math.min(500, $('body').width())px;*/
+	width: 80%;
+	max-width: 500px;
+	margin-left: 10px; 
+	margin-right: 10px;;
+	margin-top: 25px;
+	padding:10px;
+	transition: 0.3s;
+	height: 80%;
+	text-align: center;
+	background-color: #c2c2c2;
+	 border-radius: 4px;
+	display: inline-block;
+	
+}
+
+/* On mouse-over, add a deeper shadow */
+.infoCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.infoContents{
+	
+	background-color: #ffffff;
+	border-radius: 4px;	
+}
+
+/* Add some padding inside the card container */
+.infoContainer {
+	background-color: #3b5998;
+	color: #ffffff;
+	margin-left: auto; 
+	margin-right: auto;
+	padding: 2px ;
+	text-align: center;
+	
+	border-radius: 4px;
+	margin-bottom: 10px;
+	
+}
+.infotable { 
+	box-sizing: border-box;
+	width: 100%;
+	
+  
+}
+/*table tr:hover {
+   background-color:#13326b;
+   color:#ffffff;
+   text-shadow: 1px 2px #000000;
+   box-shadow: 0px 0px 10px #ff0000;
+   -webkit-box-shadow: 0px 0px 10px #ff0000;
+   -moz-box-shadow: 0px 0px 10px #ff0000;
+}*/
+.infotable td:nth-child(1) { 
+	width: 200px;
+	
+	font-family: 'cambria';
+	font-size: 24px;
+    padding-left: 16px; 
+ 
+    text-align: left; 
+}
+.infotable td:nth-child(2) { 
+	width:200px;
+		
+	font-family: 'cambria';
+	font-size: 24px;
+    padding-right: 16px; 
+
+    text-align: right; 
+}
+.infotable tr { 
+	border-bottom: 1px solid #e8e8e8;
+    display: block; 
+}
+.infotable tr , table td{
+    height:50px;
+}
