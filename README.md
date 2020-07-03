@@ -13,7 +13,7 @@ A gradient colored world map with data of number of users per country
 ## User Infos
 
 Infos related to User all in one place
-![Image of User](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI6.PNG)
+![Image of User](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI6.png)
 
 ## Contest Rating
 
@@ -23,12 +23,12 @@ Rating , Ranking and Rating Change graph of all the official contest part partic
 ## Submissions
 
 Verdicts counts of all the submission in a doughnut chart
-![Image of Submissions](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI7.PNG)
+![Image of Submissions](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI7.png)
 
 ## Tags
 
 Tags of all the solved and unsolved problems
-![Image of Tags](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI8.PNG)
+![Image of Tags](https://github.com/TamimEhsan/CodeforceAPI/blob/master/images/CFAPI8.png)
 
 ## Problems
 
