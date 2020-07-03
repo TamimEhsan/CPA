@@ -66,16 +66,18 @@ async function getData(){
 	
 	// Populating User Table
 	document.getElementById("userTable").innerHTML="";
-	addTableRow("userTable","Handle",data.result[0].handle);
+	//addTableRow("userTable","Handle",data.result[0].handle);
 	var name = "";
 	if(typeof data.result[0].firstName!= "undefined") name = name+ data.result[0].firstName+" ";
 	if(typeof data.result[0].lastName!= "undefined") name = name+ data.result[0].lastName;
 
 	addTableRow("userTable","Name",name);
+	if(typeof data.result[0].country != "undefined" )
+		addTableRow("userTable","Country",data.result[0].country);
 	addTableRow("userTable","Rating",data.result[0].rating);
 	addTableRow("userTable","Max Rating",data.result[0].maxRating);
-	addTableRow("userTable","Rank",data.result[0].rank);
-	addTableRow("userTable","Max Rank",data.result[0].maxRank);
+	addTableRow("userTable","Friend of",data.result[0].friendOfCount);
+	addTableRow("userTable","Contribution",data.result[0].contribution );
 	document.getElementById("dp").src = "https:"+data.result[0].titlePhoto;
 	
 	// Asking Contest objects for rating chart
@@ -84,6 +86,28 @@ async function getData(){
 	if(cdata.status == "OK"){
 		changeRatingChart();
 	}
+	// Poplulating contest Table
+	document.getElementById("contestTable").innerHTML="";
+	var maxChange = -10e5, minChange = 10e5, maxRank = -10e5, minRank = 10e5;
+	for(i=0;i<cdata.result.length;i++){
+		if(i==0){
+			maxChange = Math.max(maxChange, cdata.result[i].newRating-1500);
+			minChange = Math.min(minChange, cdata.result[i].newRating-1500);
+		}
+		else{
+			maxChange = Math.max(maxChange, cdata.result[i].newRating-cdata.result[i].oldRating);
+			minChange = Math.min(minChange, cdata.result[i].newRating-cdata.result[i].oldRating);
+		}
+		maxRank = Math.max(maxRank, cdata.result[i].rank);
+		minRank = Math.min(minRank, cdata.result[i].rank);
+	}
+	addTableRow("contestTable","Total Contest",cdata.result.length);
+	addTableRow("contestTable","Best Rank",minRank);
+	addTableRow("contestTable","Worst Rank",maxRank);
+	addTableRow("contestTable","Max Rating Change",maxChange);
+	addTableRow("contestTable","Min Rating Change",minChange);
+	addTableRow("contestTable","Rank",data.result[0].rank);
+	addTableRow("contestTable","Max Rank",data.result[0].maxRank);
 	
 	// Asking for submission objects
 	const sresponse = await fetch(base_api_url+"user.status?handle="+handle);
@@ -137,7 +161,8 @@ async function getData(){
 			toptenStrong.push(temp);
 		}
 		if(weakTags[i]!=weakTags[i-1]){
-			var temp = [weakTags[i-1],i-lastw];
+			var numb = i-lastw
+			var temp = [weakTags[i-1]+": "+numb,i-lastw];
 			lastw = i;
 			toptenWeak.push(temp);
 		}
@@ -152,7 +177,17 @@ async function getData(){
 			return (a[1] > b[1]) ? -1 : 1;
 		}
 	}
-		
+	
+	var tagsToAdd = "";
+	for(i = 0; i<10;i++){
+		tagsToAdd = tagsToAdd.concat("<span style=\"float:left\">"+toptenStrong[i][0]+"</span>");
+	}
+	document.getElementById("strongTags").innerHTML = tagsToAdd;
+	tagsToAdd = "";
+	for(i = 0; i<10;i++){
+		tagsToAdd = tagsToAdd.concat("<span style=\"float:left\">"+toptenWeak[i][0]+"</span>");
+	}
+	document.getElementById("weakTags").innerHTML = tagsToAdd;
 
 	
 	var dataTags = [["Type","Count"],["AC: "+ac,ac],["WA: "+wa,wa],["CE: "+ce,ce],["RTE: "+rte,rte],["MLE: "+mle,mle],["Others: "+others,others]];
@@ -190,7 +225,7 @@ function changeRatingChart(){
 			}
 			else if(state == "changedRating"){
 				sstatus = "Contest Changed Rating";
-				if(i == 0) datax.push(cdata.result[i].newRating-1400);
+				if(i == 0) datax.push(cdata.result[i].newRating-1500);
 				else datax.push(cdata.result[i].newRating-cdata.result[i].oldRating);
 			}
 			else {
