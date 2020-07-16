@@ -1,0 +1,76 @@
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+	<title> Codeforces Visualizer </title>
+
+	
+	<script src="js/doubleuser.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+</head>
+
+<body>
+	<script type="text/javascript">
+		google.charts.load('current', {'packages':['corechart']});
+		
+	</script>
+	
+	<ul>
+		<li style="float:left;"><span style="font-size:24px;color:#ffffff;font-family: 'cambria';"> CodeForces Profile Analyzer</span></li>
+		<li><a href="#about">About</a></li>
+		<li><a class="active" href="double.html">Double User</a></li>
+		<li><a href="single.html">Single User</a></li>
+		<li><a href="index.html">Home</a></li>
+	</ul>
+	<br/> <br/>
+	<div class="card">
+		<input type = "text" id = "handle1" placeholder="1st Handle" >
+		<input type = "text" id = "handle2" placeholder="2nd Handle" ><br/>
+		<button type = "button" onclick = "getDoubleData()"> Submit </button> <br />
+		<span id="errorDouble" style="color:red;background-color:black"></span>
+	</div>
+	
+	<div id = "hiddenDivDouble" style="display:none;">
+		<div class = "infoCard" >
+			<div class = "container">
+			<p><h2><b> User Profiles</b></h2></p>
+			</div>
+			<div class="contents" style{ text-align="left"}>
+				<table  class="infotable2" id="userTableDouble" text-align="center"></table>
+			</div>
+		</div>
+		<div class = "infoCard" >
+			<div class = "container">
+			<p><h2><b> Contest Related Info</b></h2></p>
+			</div>
+			<div class="contents" style{ text-align="left"}>
+				<table class="infotable2" id="contestTableDouble"></table>
+			</div>
+		</div>
+		<div class = "infoCard" >
+			<div class = "container">
+			<p><h2><b> Common Contests</b></h2></p>
+			</div>
+			<div class="contents" style{ text-align="left"}>
+				<table class="infotable2" id="commonContestTableDouble"></table>
+			</div>
+		</div>
+		
+		<div class = "card">
+			<div class = "container">
+				<p><h2><b>Contest Rating Chart</b></h2></p>
+			</div> 
+			<div class="contents">
+				<div id="contestChartDouble"  style="width: 1200px; height: 400px"></div> <br />
+			</div>
+		</div>
+		
+	</div>
+
+</body>
+</html>
