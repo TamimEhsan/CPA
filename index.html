@@ -10,7 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	
-	<script src="js/singleuser.js"></script>
+	<script src="js/world.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/mystyle.css">
 
 </head>
@@ -24,112 +24,67 @@
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
 	 </script>
+	<ul>
+		<li style="float:left;"><span style="font-size:24px;color:#ffffff;font-family: 'cambria';"> CodeForces Profile Analyzer</span></li>
+		<li><a href="#about">About</a></li>
+		<li><a  href="double.html">Double User</a></li>
+		<li><a href="single.html">Single User</a></li>
+		<li><a class="active" href="index.html">Home</a></li>
+	</ul>
+	<br/> <br/>
 	<div class="card">
-		<input type = "text" id = "handle" placeholder="Your Handle"><br/>
-		<button type = "button" onclick = "getData()"> Submit </button> <br />
-		<span id="error" style="color:red;background-color:black"></span>
+	<div class = "container">
+		<p><h2><b>Welcome to Codeforces Profile Analyzer</b></h2></p>
+		</div>
+		<div style="background-color:#ffffff;border-radius: 4px; padding:10px;	">
+			<p style="color:#000000; font-size:20px;"> Codeforces Visualizer is a visualization of Codeforces user profile.
+			With beautiful and interactive graphs and informations you can 
+			look at your CF profile from a new perspective. The Beta version 
+			offers some features</p>
+			<p style="color:#000000; font-size:20px;text-align:left;">
+				World Map:<br/>
+				A gradient colored world map with data of number of users per country
+				<br/><br/>
+				User Infos:<br/>
+				Infos related to User all in one place
+				<br/><br/>
+				Contest Rating:<br/>
+				Rating , Ranking and Rating Change graph of all the official contest part participated by the user
+				<br/><br/>
+				Submissions:<br/>
+				Verdicts counts of all the submission in a doughnut chart
+				<br/><br/>
+				Tags:<br/>
+				Tags of all the solved and unsolved problems
+				<br/><br/>
+				Problems:<br/>
+				Problem sorted according to their difficulties
+
+				<br/><br/>
+				And some few more. Some more info might be added, but I'm too lazy.
+				Also, If you like my work you can follow me on github or star my repo.
+				It keeps me motivated. 
+		</p>
+		</div>
 	</div>
-	
 	<div class = "card" id = "firstToShow">
 		<div class = "container">
 		<p><h2><b>Number of Users Per Country</b></h2></p>
 		</div>
-		<div class="contents">
+		<div class="contents" style="text-align: center">
 			<div id="regions_div" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
 		</div>
 	</div>
-	
-	<div id="hiddendiv">
-		
-		<div class = "infoCard" >
-			<div class = "container">
-			<p><h2><b> User Profile</b></h2></p>
-			</div>
-			<div class="contents" style{ text-align="left"}>
-				<table >
-					<tr><td>
-					<img src="" id = "dp" height = "300px"> <br \>
-					</td>
-					<td>
-					<table class="infotable" id="userTable"></table>
-					</td></tr>
-				</table>
-			</div>
-		</div>
-		
-		<div class = "infoCard" >
-			<div class = "container">
-			<p><h2><b> Contest Related Info</b></h2></p>
-			</div>
-			<div class="contents" style{ text-align="left"}>
-				<table class="infotable" id="contestTable"></table>
-			</div>
-		</div>
-		
-		<div class = "card" >
-			<div class = "container">
-			
-			<table >
-			<td><h2 > Contest Rating Graph</h1></td>
-			<td><select id="mySelect" onchange="changeRatingChart()">
-				<option value="newRating">New Rating
-				<option value="changedRating">Rating Changes
-				<option value="rank">Rank
-			</select>
-			</td></tr></table>
-			</div>
-			<div class="contents" style="text-align:center">
-				<div style="margin-left:auto; margin-right: auto">
-				<canvas id="ratingChart" width="400", height="100"  ></canvas>
-				</div>
-			</div> 
-		</div>
-		<div class = "infoCard" >
-			<div class = "container">
-				<p><h2><b>Submission Graph</b></h2></p>
-			</div> 
-			<div class="contents">
-				<div id="submissionchart" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
-			</div>
-		</div>
-		
-		<div class = "infoCard" >
-			<div class = "container">
-				<p><h2><b>Tags Graph</b></h2></p>
-			</div> 
-			<div class="contents">
-				<div id="donutchart" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
-			</div>
-		</div>
-		<div class = "infoCard" >
-			<div class = "container">
-				<p><h2><b>T10 Solved Tags</b></h2></p>
-			</div> 
-			<div class="contents">
-				<div id="strongTags" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
-			</div>
-		</div>
-		
-		<div class = "infoCard" >
-			<div class = "container">
-				<p><h2><b>T10 Unsolved Tags</b></h2></p>
-			</div> 
-			<div class="contents">
-				<div id="weakTags" style="margin-left: auto; margin-right: auto;position:center;  display: block"></div>
-			</div>
-		</div>
-		
-		<div class = "card">
-			<div class = "container">
-				<p><h2><b>Problem Chart</b></h2></p>
-			</div> 
-			<div class="contents">
-				<canvas id="problemChart" style{width:1 ,height: 1 ,max-height: 400px ,max-width: 400px}></canvas> <br />
-			</div>
-		</div>
-		
-	</div>
-
+	<br />
+	<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/TamimEhsan" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @TamimEhsan on GitHub">Follow @TamimEhsan</a>
+	<!-- Place this tag where you want the button to render. -->
+	<a class="github-button" href="https://github.com/TamimEhsan/CodeforceAPI" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star TamimEhsan/CodeforceAPI on GitHub">Star</a>
+	<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/TamimEhsan/CodeforceAPI/fork" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Fork TamimEhsan/CodeforceAPI on GitHub">Fork</a>
+	<br/>Developed By <a href="https://www.facebook.com/tamimul.ehsan.9">Tamim Ehsan</a>
+	<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 <style>
    
