@@ -6,7 +6,7 @@ google.charts.load('current', {
       });
       google.charts.setOnLoadCallback(drawRegionsMap);
 
-async	function drawRegionsMap() {
+async function drawRegionsMap() {
 		const api_url = "https://o4qqcaphlj.execute-api.ap-south-1.amazonaws.com/demo?fbclid=IwAR2HUAaUx6rWNpo4WQihJl8Y_ThsLihG_X9T0IXdRyp0QAw9Fj02AbKihzI";
 		const response = await fetch(api_url);
 		//console.log(response);
