@@ -20,14 +20,34 @@
 		
 	</script>
 	
-	<ul>
-		<li style="float:left;"><span style="font-size:24px;color:#ffffff;font-family: 'cambria';"> CodeForces Profile Analyzer</span></li>
-		<li><a href="#about">About</a></li>
-		<li><a class="active" href="double.html">Double User</a></li>
-		<li><a href="single.html">Single User</a></li>
+	<ul class="upNav">
+		<li style="float:left;margin:5px;"><span style="font-size:30px;color:#ffffff;font-family: 'cambria';"> CodeForces Profile Analyzer</span></li>
+		<li><a href="https://tamimehsan.github.io/">Contact</a></li>
+		<li><a  class="active" href="double.html">Double User</a></li>
+		<li><a  href="single.html">Single User</a></li>
 		<li><a href="index.html">Home</a></li>
 	</ul>
-	<br/> <br/>
+	<div class="sidNav" align="left" style="background-color:#333;padding:5px;">
+		<div id="mySidenav" class="sidenav">
+		   <span>CodeForces Profile Analyzer</span>
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <a href="index.html">Home</a>
+		  <a href="single.html">Single User</a>
+		  <a  class="active" href="double.html">Double User</a>
+		  <a href="https://tamimehsan.github.io/">Contact</a>
+		</div>
+		<span style="font-size:30px;cursor:pointer; color:#ffffff" onclick="openNav()">&#9776; CodeForces Profile Analyzer</span>
+	
+	</div>
+	<script>
+		function openNav() {
+		  document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		function closeNav() {
+		  document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
 	<div class="card">
 		<input type = "text" id = "handle1" placeholder="1st Handle" >
 		<input type = "text" id = "handle2" placeholder="2nd Handle" ><br/>
