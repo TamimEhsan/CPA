@@ -14,7 +14,7 @@
 	height: 80%;
 	text-align: center;
 	background-color: #c2c2c2;
-	 border-radius: 4px;
+	border-radius: 4px;
 	 
 	
 }
@@ -99,7 +99,7 @@ body{
 	width: 80%;
 	max-width: 600px;
 	margin-left: 10px; 
-	margin-right: 10px;;
+	margin-right: 10px;
 	margin-top: 25px;
 	padding:10px;
 	transition: 0.3s;
@@ -197,9 +197,11 @@ body{
 .infotable2 tr , table td{
     height:50px;
 }
-/* navigation*/
+/* navigation Upper nav*/
 ul {
-	
+	/*position: absolute;
+	top:0;
+	width: 100%;*/
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -223,20 +225,79 @@ li a {
 li a:hover:not(.active) {
   background-color: #111;
 }
-
+div div a:hover:not(.active) {
+  background-color: #000000;
+}
 .active {
   background-color: #4CAF50;
 }
+/* Navigation side Nav*/
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
 
+.sidenav a  {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+}
+ .sidenav span{
+	padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #000000;
+  display: block;
+  transition: 0.3s;
+  background-color:#ffffff;
+ }
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.sidNav{
+	display:none;
+}
 /* mobile view portrait*/
 @media screen and (max-width: 700px) {
   .card  {
     width:100%;
-	margin: 0px;
-	padding: 0px;
+	margin:5px;
+	border: 1px solid black;
   }
   .infoCard {
 	width:100%;
-	margin: 0px;
-	padding: 0px;
+	margin-left: 0px; 
+	margin-right: 0px;
   }
+  #handle, #handle1, #handle2, button{
+	  width: 80%;
+	  margin-bottom:5px;
+  }
+  .upNav {
+	  display: none;
+  }
+  .sidNav{
+	  display: block;
+  }
+}  
+  
