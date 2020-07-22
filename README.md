@@ -1,4 +1,4 @@
-# CodeforceAPI
+# CodeforceCPA
 
 [![HitCount](http://hits.dwyl.com/TamimEhsan/repo/CodeforceAPI.svg)](http://hits.dwyl.com/TamimEhsan/repo/CodeforceAPI)
 
