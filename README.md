@@ -1,6 +1,5 @@
 # CodeforceProfileAnalyzer
-
-[![HitCount](http://hits.dwyl.com/TamimEhsan/repo/CodeforceAPI.svg)](http://hits.dwyl.com/TamimEhsan/repo/CodeforceAPI)
+[![HitCount](http://hits.dwyl.com/TamimEhsan/CPA.svg)](http://hits.dwyl.com/TamimEhsan/CPA)
 
 A visualizer for Codeforce made with CF API\
 
