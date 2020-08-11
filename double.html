@@ -17,7 +17,7 @@
 <body>
 	<script type="text/javascript">
 		google.charts.load('current', {'packages':['corechart']});
-		
+		google.charts.load('current', {'packages':['bar']});
 	</script>
 	
 	<ul class="upNav">
@@ -80,13 +80,31 @@
 				<table class="infotable2" id="commonContestTableDouble"></table>
 			</div>
 		</div>
-		
+
+		<div class = "infoCard" >
+			<div class = "container">
+				<p><h2><b> Submissions Related Info</b></h2></p>
+			</div>
+			<div class="contents" style{ text-align="left"}>
+				<table class="infotable2" id="problemTableDouble"></table>
+			</div>
+		</div>
+
 		<div class = "card">
 			<div class = "container">
 				<p><h2><b>Contest Rating Chart</b></h2></p>
 			</div> 
 			<div class="contents">
 				<div id="contestChartDouble"  style="width: 1200px; height: 400px"></div> <br />
+			</div>
+		</div>
+
+		<div class = "card">
+			<div class = "container">
+				<p><h2><b>Submission Chart</b></h2></p>
+			</div>
+			<div class="contents">
+				<div id="problemChartDouble"  style="width: 1200px; height: 400px"></div> <br />
 			</div>
 		</div>
 		

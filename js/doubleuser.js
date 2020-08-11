@@ -7,8 +7,8 @@ var data;
 var handle1;
 var handle2;
 async function getDoubleData(){
-	handle1 = document.getElementById("handle1").value;
-	handle2 = document.getElementById("handle2").value;
+	handle1 = document.getElementById("handle1").value.trim();
+	handle2 = document.getElementById("handle2").value.trim();
 	const api_url = 'https://codeforces.com/api/user.info?handles='+handle1+";"+handle2;
 	response = await fetch(api_url);
 	data = await response.json();
@@ -50,12 +50,14 @@ async function getDoubleData(){
 	
 	createContestTable(handle1,handle2);
 	createCommonContestTable(handle1,handle2);
+	createProblemTable(handle1,handle2);
 	
 	if (typeof google.visualization == 'undefined') {
 		google.charts.setOnLoadCallback(drawContestChart);
 	} else {
 		drawContestChart();
 	}
+
 }
 
 function createContestTable(handle1,handle2){
@@ -149,6 +151,89 @@ function drawContestChart(){
 
 }
 
+var dataProblemChart = [];
+
+async function createProblemTable(handle1,handle2){
+	const url1 = " https://codeforces.com/api/user.status?handle="+handle1;
+	const url2 = " https://codeforces.com/api/user.status?handle="+handle2;
+	const problemRes1 = await fetch(url1);
+	const problemRes2 = await fetch(url2);
+	const problemData1 = await problemRes1.json();
+	const problemData2 = await problemRes2.json();
+	const problemCount1 = problemData1.result.length;
+	const problemCount2 = problemData2.result.length;
+	var ac1 = 0, wa1 = 0, others1 = 0, ac2 = 0,wa2 = 0, others2 = 0;
+	var problemIndex1 = []; problemIndex2 = [];
+	for(i=0;i<26;i++){
+		problemIndex1[i] = 0;
+		problemIndex2[i] = 0;
+	}
+	var mxIndex = 0;
+	//1st user
+	for(i=0;i<problemCount1;i++){
+		var ch = problemData1.result[i].problem.index;
+		var ca = "A";
+		var dif = ch.charCodeAt(0)-ca.charCodeAt(0);
+
+		var verdict = problemData1.result[i].verdict;
+		if( verdict == "OK" ){
+			ac1++;
+			if(dif>mxIndex) mxIndex = dif;
+			problemIndex1[dif]++;
+		}
+		else if( verdict == "WRONG_ANSWER" ){wa1++;}
+		else others1++;
+	}
+	//2nd user
+	for(i=0;i<problemCount2;i++){
+		var ch = problemData2.result[i].problem.index;
+		var ca = "A";
+		var dif = ch.charCodeAt(0)-ca.charCodeAt(0);
+
+		var verdict = problemData2.result[i].verdict;
+		if( verdict == "OK" ){
+			ac2++;
+			if(dif>mxIndex) mxIndex = dif;
+			problemIndex2[dif]++;
+		}
+		else if( verdict == "WRONG_ANSWER" ){wa2++;}
+		else others2++;
+	}
+	document.getElementById("problemTableDouble").innerHTML = "";
+	addTableRow("problemTableDouble","Handle",handle1,handle2);
+	addTableRow("problemTableDouble","Total Submissions",problemCount1,problemCount2);
+	addTableRow("problemTableDouble","Total AC",ac1,ac2);
+	addTableRow("problemTableDouble","Total WA",wa1,wa2);
+	addTableRow("problemTableDouble","Others",others1,others2);
+
+	dataProblemChart = [];
+	var data = ["Index",handle1,handle2];
+	dataProblemChart.push(data);
+	for(i = 0;i<=mxIndex;i++){
+		const character = String.fromCharCode(i+65);
+		data = [character,problemIndex1[i],problemIndex2[i]];
+		dataProblemChart.push(data);
+	}
+	if (typeof google.visualization == 'undefined') {
+		google.charts.setOnLoadCallback(drawProblemChart);
+	} else {
+		drawProblemChart();
+	}
+}
+
+function drawProblemChart(){
+	var data = google.visualization.arrayToDataTable(
+		dataProblemChart
+	);
+	var options = {
+		legend: { position: 'top'},
+		chart: {
+			title: 'Solved Problem Count grouped by Index'
+		}
+	};
+	var chart = new google.charts.Bar(document.getElementById('problemChartDouble'));
+	chart.draw(data, google.charts.Bar.convertOptions(options));
+}
 function addTableRow(name,topic,data1,data2){
 	var table = document.getElementById(name);
 
