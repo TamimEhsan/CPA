@@ -46,14 +46,13 @@
 	
 }
 table{
-	margin-left: auto; 
-	margin-right: auto;
+	width:100%;
 }
 td{
 	text-align:left;
 }
 body{
-	background-color: grey;
+	background-color: #1c2e4a;
 }
 input[type=text] {
   border: 2px solid green;
@@ -139,6 +138,7 @@ body{
 .infotable { 
 	box-sizing: border-box;
 	width: 100%;
+	border-collapse: collapse;
 }
 /*table tr:hover {
    background-color:#13326b;
@@ -148,24 +148,32 @@ body{
    -webkit-box-shadow: 0px 0px 10px #ff0000;
    -moz-box-shadow: 0px 0px 10px #ff0000;
 }*/
+.infotable td { 
+	margin:0;
+}
 .infotable td:nth-child(1) { 
-	width:  200px;
+	
+	padding-left: 16px; 
 	font-family: 'cambria';
 	font-size: 24px;
-    padding-left: 16px; 
- 
     text-align: left; 
 }
+
 .infotable td:nth-child(2) { 
-	width:200px;
+	
+	padding-right: 16px; 
 	font-family: 'cambria';
 	font-size: 24px;
-    padding-right: 16px; 
-    text-align: right; 
+    text-align: right;
+	
 }
+
+.infotable tr:nth-child(even){background-color: #f2f2f2;}
+
 .infotable tr { 
 	border-bottom: 1px solid #e8e8e8;
-    display: block; 
+   /* display: block; */
+	
 }
 .infotable tr , table td{
     height:50px;
@@ -173,8 +181,11 @@ body{
 // Doubles
 .infotable2 { 
 	box-sizing: border-box;
-	width: 100%;
-	table-layout: fixed ;
+	/*table-layout: fixed ;*/
+	
+	border-collapse: collapse;
+	
+	
 }
 /*table tr:hover {
    background-color:#13326b;
@@ -185,30 +196,34 @@ body{
    -moz-box-shadow: 0px 0px 10px #ff0000;
 }*/
 .infotable2 td { 
-	width:  200px;
+	/*width:  200px;*/
+	 /*border: 1px solid #ddd;
+	border-bottom: 1px solid #e8e8e8;*/
 	font-family: 'cambria';
 	font-size: 24px;
-    padding-left: 16px; 
+    /*padding-left: 16px;*/ 
+    text-align: center; 
+}
+.infotable2 td:nth-child(1) { 
+	padding-left:10px;
     text-align: left; 
 }
-
-.infotable2 tr { 
-	border-bottom: 1px solid #e8e8e8;
-    display: block; 
-}
+.infotable2 tr:nth-child(1){background-color: #c5c6c7;}
+.infotable2 tr:nth-child(even){background-color: #f2f2f2;}
 .infotable2 tr , table td{
     height:50px;
 }
 /* navigation Upper nav*/
+
 ul {
 	/*position: absolute;
 	top:0;
 	width: 100%;*/
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #ffffff;
    z-index: 1;
 }
 
@@ -218,14 +233,16 @@ li {
 
 li a {
   display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
+  font-size: 20px;
+  font-family: helvetica;
   text-decoration: none;
 }
 
 li a:hover:not(.active) {
-  background-color: #111;
+  background-color: #c3c3c3;
 }
 div div a:hover:not(.active) {
   background-color: #000000;
@@ -280,7 +297,7 @@ div div a:hover:not(.active) {
 	display:none;
 }
 /* mobile view portrait*/
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   .card  {
     width:100%;
 	/*margin:5px;

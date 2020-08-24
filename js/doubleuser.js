@@ -250,22 +250,29 @@ var color1 = ">";
 var color2 = ">";
 if(typeof data1 == "number"){
 	if(data1>data2) {
-		color1 = "style=\"background-color: #00ff00;\"> ";
-		color2 = "style=\"background-color: #ff0000;\"> ";
+		cell2.style.backgroundColor = '#4CAF50';
+		cell3.style.backgroundColor = '#C3073F';
+		/*color1 = "style=\"background-color: #00ff00;\"> ";
+		color2 = "style=\"background-color: #ff0000;\"> ";*/
 	} else if(data2>data1){
-		color2 = "style=\"background-color: #00ff00;\"> ";
-		color1 = "style=\"background-color: #ff0000;\"> ";
+		cell3.style.backgroundColor = '#4CAF50';
+		cell2.style.backgroundColor = '#C3073F';
+		/*color2 = "style=\"background-color: #00ff00;\"> ";
+		color1 = "style=\"background-color: #ff0000;\"> ";*/
 	}
 	
 }
 switch(topic){
 	case "Best Rank":
 	case "Worst Rank":
+		var temp2 = cell2.style.backgroundColor;
+		cell2.style.backgroundColor = cell3.style.backgroundColor;
+		cell3.style.backgroundColor = temp2;
 		var temp = color1;
 		color1 = color2;
 		color2 = temp;
 }
 cell1.innerHTML = topic;
-cell2.innerHTML = "<span "+color1+data1+"<//span>";
-cell3.innerHTML = "<span "+color2+data2+"<//span>";
+cell2.innerHTML = data1; //"<span "+color1+data1+"<//span>";
+cell3.innerHTML = data2;//"<span "+color2+data2+"<//span>";
 }
