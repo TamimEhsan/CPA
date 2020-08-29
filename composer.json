@@ -1,1 +1,5 @@
-{}
+{
+	 "routes": {
+	"": "index.html"
+  }
+}
