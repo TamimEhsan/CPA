@@ -83,7 +83,7 @@ async function getData(){
 	const submission_data = await sresponse.json();
 	var count = submission_data.result.length;
 	var ac = 0, ce = 0 ,wa = 0, tle = 0, rte = 0, mle = 0, others = 0;
-	var ara = [];
+	var ara = [], arac = [];
 	var mxpr = 0;
 	var strongTags = [], weakTags = [];
 	
@@ -92,13 +92,18 @@ async function getData(){
 		var ca = "A";
 		var dif = ch.charCodeAt(0)-ca.charCodeAt(0);
 		
-		if(dif>mxpr) mxpr = dif;
+		//if(dif>mxpr) mxpr = dif;
 		
-		if( typeof ara[dif] == "undefined") ara[dif] = 0;
+		if( typeof ara[dif] == "undefined") {ara[dif] = 0; arac[dif] = 0;}
 		ara[dif]++;
+		
 		//if(dif==11)console.log(i);
 		var verdict = submission_data.result[i].verdict;
-		if( verdict == "OK" ){ac++;}
+		if( verdict == "OK" ){
+			ac++;
+			arac[dif]++;
+			if(dif>mxpr) mxpr = dif;
+		}
 		else if( verdict == "WRONG_ANSWER" ){wa++;}
 		else if( verdict == "COMPILATION_ERROR") ce++;
 		else if( verdict == "TIME_LIMIT_EXCEEDED") tle++;
@@ -170,10 +175,11 @@ async function getData(){
 	var datalabels4 = [];
 	var datax4 = [];
 	for(i = mxpr;i>=0;i--){
-		if( typeof ara[i] == "undefined") ara[i] = 0;
+		if( typeof arac[i] == "undefined") arac[i] = 0;
 		const character = String.fromCharCode(i+65);
 		datalabels4.push(character);
-		datax4.push(ara[i]);
+		var tempe = [];
+		datax4.push(arac[i]);
 		//console.log(ara[i]);
 	}
 	createProblemChart(datalabels4,datax4);
@@ -302,7 +308,7 @@ function createProblemChart(datalabels,datax){
 				}]
 			},
 			options: {
-			
+				
 			}
 		});
 	}
